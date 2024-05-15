@@ -25,7 +25,7 @@ class ChatGPTScreen extends StatefulWidget {
 
 class _ChatGPTScreenState extends State<ChatGPTScreen> {
   TextEditingController _messageController = TextEditingController();
-  String _responseMessage = 'Placeholder Text';
+  String _responseMessage = 'Ask Me Something bruh';
 
   Future<void> _sendMessage() async {
     setState(() {
@@ -88,16 +88,17 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
     Expanded(
       child: SingleChildScrollView(
         padding: EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Expanded(
+        child: _responseMessage.isNotEmpty ? Expanded(
               child: Text(
                 _responseMessage,
                 style: TextStyle(fontSize: 16.0),
               ),
-            ),
-            SizedBox(height: 20), // Adding space between the text and input field
-    Container(
+            ) : CircularProgressIndicator()
+            
+      ),
+    ),
+    SizedBox(height: 20),
+     Container(
       padding: const EdgeInsets.all(15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // Ensuring space between input field and button
@@ -117,10 +118,6 @@ class _ChatGPTScreenState extends State<ChatGPTScreen> {
             onPressed: _sendMessage,
           ),
         ],
-      ),
-    ),
-          ],
-        ),
       ),
     ),
     
